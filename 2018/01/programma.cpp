@@ -1,8 +1,8 @@
-#include "fstream"
-#include "iostream"
-#include "map"
-#include "string"
-#include "vector"
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <string>
+#include <vector>
 #include <algorithm>
 #include <cstdint>
 #include <cstdio>
@@ -48,11 +48,11 @@ void partTwo() {
       } else {
         total = total - std::stoi(a.substr(1, a.length() - 1));
       }
-      if (frequences[total] == true) {
+      if (frequences[total]) {
         std::cout << total << std::endl;
         whileControl = false;
       }
-      frequences.insert(std::pair<int, bool>(total, true));
+      frequences[total] = true;
     }
   }
 }
