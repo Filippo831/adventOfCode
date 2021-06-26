@@ -49,16 +49,36 @@ void partOne(std::vector<std::string> functionLines) {
       it++;
     }
   }
-  std::cout <<"doubleLetter: "<< doubleLetter << std::endl;
-  std::cout <<"tripleLetter: "<< tripleLetter << std::endl;
-  std::cout << "total: "<<doubleLetter*tripleLetter << std::endl;
+  std::cout << "doubleLetter: " << doubleLetter << std::endl;
+  std::cout << "tripleLetter: " << tripleLetter << std::endl;
+  std::cout << "total: " << doubleLetter * tripleLetter << std::endl;
 }
-void partTwo(std::vector<std::string> functionLines) {}
+void partTwo(std::vector<std::string> functionLines) {
+  int iteration = 0;
+  std::vector<std::string> temp1 = functionLines;
+  for (auto a : temp1) {
+    std::string myB;
+    std::vector<std::string> temp2 = functionLines;
+    for (auto b : temp2) {
+      int different = 0;
+      myB = b;
+      for (int i = 0; i < a.length(); ++i) {
+        if (a.at(i) != b.at(i)) {
+          different++;
+        }
+      }
+      if (different == 1) {
+        std::cout << a << std::endl;
+        std::cout << myB << std::endl;
+      }
+    }
+  }
+}
 
 int main(int argc, char *argv[]) {
   std::vector<std::string> lines = readFile();
-  partOne(lines);
-  // partTwo();
+  // partOne(lines);
+  partTwo(lines);
 
   return 0;
 }
