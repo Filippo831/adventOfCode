@@ -53,6 +53,7 @@ void partOne(std::vector<std::string> functionLines) {
   std::cout << "tripleLetter: " << tripleLetter << std::endl;
   std::cout << "total: " << doubleLetter * tripleLetter << std::endl;
 }
+
 void partTwo(std::vector<std::string> functionLines) {
   int iteration = 0;
   std::vector<std::string> temp1 = functionLines;
