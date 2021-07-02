@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -19,7 +20,8 @@ struct information {
 
 
 // vector with all information divided by month and day
-std::vector<std::vector<std::vector<information > > > daysVector (10, std::vector<std::vector<information> >(32, std::vector<information> (10)));
+std::vector<std::vector<std::vector<information > > > daysVector (12, std::vector<std::vector<information> >(32, std::vector<information> (10)));
+std::vector<std::vector<std::vector<int> > > guardNumbers (12, std::vector<std::vector<int> >(32, std::vector<int> (10,0)));
 //std::vector<std::vector<std::vector<std::string> > > daysVector (10, std::vector<std::vector<std::string> >(32, std::vector<std::string> (10)));
 
 std::vector<std::string> readFile() {
@@ -50,9 +52,19 @@ void partOne(std::vector<std::string> lines) {
       int guardNumber = std::stoi(line.substr(26, space-26));
 
       data.action = 0;
+      guardNumbers[myMonth][myDay+1].push_back(guardNumber);
       data.guardNumber = guardNumber;
     };
 
+    data.myMinutes = std::stoi(line.substr(15,2));
+    std::cout << data.myMinutes << std::endl;
+    int index = 0;
+    for (auto event : daysVector[myDay][myMonth]) {
+      if (data.myMinutes < event.myMinutes) {
+        std::rotate(daysVector[myDay][myMonth].begin(), daysVector[myDay][myMonth].end() - 1,daysVector[myDay][myMonth]);
+      }
+      index++;
+    }
     daysVector[myMonth][myDay].push_back(data);
   }
 }
